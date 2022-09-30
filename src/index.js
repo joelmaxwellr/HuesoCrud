@@ -1,17 +1,33 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import Boton from "./Boton"
+import TaskCard from "./TaskCard"
+import Timer from "./Timer"
+import Calculadora from "./Calculadora"
+
+import Button from 'react-bootstrap/Button';
+
+// or less ideally
+
+
+
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import HuesoCrud from './HuesoCrud';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <HuesoCrud>
+      
+    </HuesoCrud>
+   {/*  <Timer />
     <App />
+    <TaskCard />
+    <Boton text='click' /> */}
+
+
+    
   </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

@@ -24,7 +24,7 @@ function HuesoCrud({createCliente}) {
             <table className="table container text-center">
                 <thead>
                     <tr>
-                        <th scope="col">ID</th>
+                        
                         <th scope="col">Cliente</th>
                         <th scope="col">Precio</th>
                         <th scope="col">Duracion</th>

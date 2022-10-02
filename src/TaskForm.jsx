@@ -2,13 +2,11 @@ import React from "react";
 import { useState, useContext, useEffect } from "react";
 import DataContext from "./DataProvider";
 import clienteDato  from "./clienteDato"
-
+import { v4 as uuidv4 } from 'uuid';
 
 function TaskForm({cliente}) {
-    const {setCliente} = useContext(DataContext)
-    const [nombre,setNombre] = useState("")
-    const [precio,setPrecio] = useState(0)
-    const [estado,setEstado] = useState("En Espera")
+    const {setCliente,nombre,setNombre, precio,setPrecio,estado,setEstado} = useContext(DataContext)
+    
 
     const handleSubmitNombre = (e) => {
       setNombre(e.target.value)
@@ -24,15 +22,21 @@ function TaskForm({cliente}) {
        setEstado(e.target.value)  
        
     }
+    const fecha = () => {
+          
+        let fecha = new Date()
+        return fecha.getDay()+"-"+ fecha.getMonth() +"-"+  fecha.getFullYear() +" "+  fecha.getHours() +":"+ fecha.getMinutes()
+     }
 
     const onSubmit = (e) =>{
         e.preventDefault()
         const nuevoCliente ={
-            id: cliente.length + 1,
+            id: uuidv4(),
             nombreCliente: nombre,
             precio: precio,
             duracion: handleDuracion(precio),
             tiempoEstimado: handleTiempo(precio),
+            fecha: fecha(),
             estado: estado
         }
         setCliente([...cliente, nuevoCliente])

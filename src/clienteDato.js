@@ -1,6 +1,7 @@
+import { v4 as uuidv4 } from 'uuid';
 const clienteDato = [
     {
-        id:1,
+        id:uuidv4(),
         nombreCliente:"ADF",
         precio:500,
         duracion: 5.5,
@@ -8,7 +9,7 @@ const clienteDato = [
         estado: "Listo"
     },
     {
-        id:2,
+        id:uuidv4(),
         nombreCliente:"Salex",
         precio:530,
         duracion: 5.5,
@@ -16,7 +17,7 @@ const clienteDato = [
         estado: "Listo"
     },
     {
-        id:3,
+        id:uuidv4(),
         nombreCliente:"Neno",
         precio:1000,
         duracion: 5.5,

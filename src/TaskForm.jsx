@@ -22,7 +22,7 @@ function TaskForm({cliente}) {
     const handleSubmitEstado = (e) => {
           
        setEstado(e.target.value)  
-        
+       
     }
 
     const onSubmit = (e) =>{
@@ -37,8 +37,10 @@ function TaskForm({cliente}) {
         }
         setCliente([...cliente, nuevoCliente])
         // console.log(nombre, precio)
-        // setPrecio(" ")  
-        // setNombre(" ")
+        setPrecio(" ")  
+        setNombre(" ")
+        setEstado(e.target.value = "En Espera")
+        
     }
     const handleDuracion = (precio) => {
       const duracion = precio/500*5.5
@@ -64,12 +66,12 @@ function TaskForm({cliente}) {
     return (<>
         <form className="form d-flex flex-row" action=""  onSubmit={onSubmit}>
 
-            <input type="text" onChange={handleSubmitNombre}/>
-            <input type="number" onChange={handleSubmitPrecio} />
+            <input type="text" value={nombre} onChange={handleSubmitNombre}/>
+            <input type="number" value={precio} onChange={handleSubmitPrecio} />
             
-                <select name="estado" id="estado" onChange={handleSubmitEstado}>
+                <select value={estado} name="estado" id="estado" onChange={handleSubmitEstado}>
                 <option value="En Espera">En Espera</option>
-                <option value="Aprobado">Aprobado</option>
+                <option value="Aprobado" >Aprobado</option>
                 <option value="Cancelado">Cancelado</option>
                 <option value="Imprimiendo">Imprimiendo</option>
                 <option value="Listo">Listo</option>

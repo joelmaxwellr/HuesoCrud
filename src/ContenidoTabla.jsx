@@ -11,13 +11,25 @@ import TaskForm  from "./TaskForm"
 function ContenidoTabla({cliente}) {
 
    const {setCliente} = useContext(DataContext)
-   // setCliente(clienteDato)
 
-function handleDelete(clienteID){
-    console.log(clienteID)
-/*   cliente.find(cliente =>{
-        cliente.id !== clienteID
-    }) */
+function handleDelete(e){
+const id = parseInt(e.target.value)
+        const elemento = cliente.filter(x =>
+        x.id !== id
+    )
+    //console.log(elemento)
+    setCliente(elemento)
+}
+
+const handleEdit = (e) =>{
+    const id = parseInt(e.target.value)
+        const elemento = cliente.filter(x =>
+        x.id === id
+        
+    )
+
+    console.log(elemento)
+
 }
 
 
@@ -39,8 +51,8 @@ function handleDelete(clienteID){
                     
                     <td>
                         <button className="btn btn-success">imprimir</button>
-                        <button className="btn btn-info">modificar</button>
-                        <button className="btn btn-danger"  onClick={handleDelete(id)}>eliminar</button>
+                        <button className="btn btn-info text-white" value={id} onClick={handleEdit}>modificar</button>
+                        <button className="btn btn-danger" value={id} onClick={handleDelete}>eliminar</button>
                     </td>
                 </tr>
 

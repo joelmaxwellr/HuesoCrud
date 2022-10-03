@@ -5,7 +5,7 @@ import clienteDato  from "./clienteDato"
 import { v4 as uuidv4 } from 'uuid';
 
 function TaskForm({cliente}) {
-    const {setCliente,nombre,setNombre, precio,setPrecio,estado,setEstado} = useContext(DataContext)
+    const {setCliente,nombre,setNombre, precio,setPrecio,estado,setEstado, modificar, setModificar} = useContext(DataContext)
     
 
     const handleSubmitNombre = (e) => {
@@ -54,13 +54,14 @@ function TaskForm({cliente}) {
        const tiempo = ((precio/500)*5.5 )+ 20
        return tiempo
     }
-    
+    console.log(modificar)
     /* console.log(nuevoCliente)
     console.log(cliente) */
 
     useEffect(() => {
         setCliente(clienteDato)
-      }, [])
+        setModificar(!modificar)
+      }, [onSubmit])
    
    
 
@@ -80,7 +81,8 @@ function TaskForm({cliente}) {
                 <option value="Imprimiendo">Imprimiendo</option>
                 <option value="Listo">Listo</option>
                 </select>
-            <button className="btn btn-info" type="submit">Guardar</button>
+            {modificar ? <button className="btn btn-info" type="submit">Guardar</button> : <button className="btn btn-info" type="submit">modificar</button> 
+        }
         </form>
 
     </>)

@@ -25,7 +25,7 @@ function TaskForm({cliente}) {
     const fecha = () => {
           
         let fecha = new Date()
-        return fecha.getDay()+"-"+ fecha.getMonth() +"-"+  fecha.getFullYear() +" "+  fecha.getHours() +":"+ fecha.getMinutes()
+        return fecha.getDate()+"-"+ fecha.getUTCMonth() +"-"+  fecha.getFullYear() +" "+  fecha.getHours() +":"+ fecha.getMinutes()
      }
 
     const onSubmit = (e) =>{

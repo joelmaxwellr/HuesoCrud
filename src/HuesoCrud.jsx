@@ -5,7 +5,7 @@ import {useContext} from "react";
 import DataContext from "./DataProvider";
 
 function HuesoCrud({createCliente}) {
-    const {cliente, setCliente} = useContext(DataContext)
+    const {cliente} = useContext(DataContext)
    
     return (
         <>

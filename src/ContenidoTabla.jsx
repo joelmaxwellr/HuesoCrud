@@ -27,21 +27,27 @@ const handleEdit = (e) =>{
             if (x.id === e.target.value) {
                 setPrecio(x.precio)
                 setNombre(x.nombreCliente)
-                setEstado(x.estado)
-                
+                setEstado(x.estado) 
+               
             /* x.precio=precio
             x.nombreCliente=nombre
             x.estado=estado */
-            }
+             } 
         
         
     }
+    )
+    //const id = parseInt(e.target.value)
+    const indice = cliente.map(x =>x.id).indexOf(e.target.value)
+    setCliente(
+       [...cliente, elementos]
     )
    /*  elemento.nombreCliente = nombre
     elemento.precio = precio
     elemento.estado = estado */
 
-    console.log(elementos)
+    console.log(indice)
+    console.log(cliente)
 
 }
 
@@ -54,7 +60,7 @@ const handleEdit = (e) =>{
         <>
             {cliente.map(({ nombreCliente, id, precio, duracion, tiempoEstimado, fecha, estado }) => (
                 <tr key={id}>
-                  {/*   <th scope="row">{id}</th> */}
+                    <th scope="row">{id}</th>
                     <td>{nombreCliente}</td>
                     <td>{precio}</td>
                     <td>{duracion}</td>

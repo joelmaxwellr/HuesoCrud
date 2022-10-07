@@ -11,7 +11,7 @@ import TaskForm from "./TaskForm"
 //console.log(clienteDato)
 function ContenidoTabla({ cliente }) {
 
-    const { setCliente, nombre, setNombre, precio, setPrecio, estado, setEstado, setModificar, modificar } = useContext(DataContext)
+    const {setID, setCliente, nombre, setNombre, precio, setPrecio, estado, setEstado, setModificar, modificar } = useContext(DataContext)
 
     function handleDelete(e) {
         const id = parseInt(e.target.value)
@@ -24,32 +24,29 @@ function ContenidoTabla({ cliente }) {
 
     const handleEdit = (e) => {
 
-
+        setID(e.target.value)
         const elementos = cliente.filter(x => {
             if (x.id === e.target.value) {
                 setPrecio(x.precio)
                 setNombre(x.nombreCliente)
                 setEstado(x.estado)
 
-                /* x.precio=precio
-                x.nombreCliente=nombre
-                x.estado=estado */
             }
         })
-        //const id = parseInt(e.target.value)
+        
         const indice = cliente.map(x => x.id).indexOf(e.target.value)
         
         // setCliente([...cliente, elementos])
-        console.log(indice)
-        console.log(cliente)
+        /* console.log(indice)
+        console.log(cliente) */
         console.log(modificar)
-
+        setModificar(true)
     }
-
-
+    
+    
     useEffect(() => {
-        setModificar(modificar)
-      },[modificar])
+        
+      },[])
    
     return (
         <>

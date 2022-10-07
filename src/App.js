@@ -11,6 +11,7 @@ function App() {
     const [precio,setPrecio] = useState(0)
     const [estado,setEstado] = useState("En Espera")
     const [modificar, setModificar] = useState(false)
+    const [id, setID] = useState()
   
   /* useEffect(() => {
    setCliente(clienteDato)
@@ -20,7 +21,7 @@ function App() {
   return (
     <>
 
-      <DataContext.Provider value={{ cliente, setCliente, nombre, setNombre, precio, setPrecio, estado, setEstado, modificar, setModificar}}>
+      <DataContext.Provider value={{ id, setID, cliente, setCliente, nombre, setNombre, precio, setPrecio, estado, setEstado, modificar, setModificar}}>
         <HuesoCrud />
       </DataContext.Provider>
 

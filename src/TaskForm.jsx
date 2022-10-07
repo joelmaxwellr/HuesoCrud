@@ -5,7 +5,7 @@ import clienteDato  from "./clienteDato"
 import { v4 as uuidv4 } from 'uuid';
 
 function TaskForm({cliente}) {
-    const {setCliente,nombre,setNombre, precio,setPrecio,estado,setEstado, modificar, setModificar} = useContext(DataContext)
+    const {id, setCliente,nombre,setNombre, precio,setPrecio,estado,setEstado, modificar, setModificar} = useContext(DataContext)
     
 
     const handleSubmitNombre = (e) => {
@@ -54,14 +54,38 @@ function TaskForm({cliente}) {
        const tiempo = ((precio/500)*5.5 )+ 20
        return tiempo
     }
-    console.log(modificar)
+    console.log(id)
     /* console.log(nuevoCliente)
     console.log(cliente) */
+    const modificarCliente = (e) =>{
+    e.preventDefault()
+    setModificar(true)
+    
+    const elementos = cliente.filter(x => {
+        if (x.id === e.target.value) {
+            setPrecio(0)
+            setNombre("")
+            setEstado("En Epera")
+
+            x.precio=precio
+            x.nombreCliente=nombre
+            x.estado=estado
+            setModificar(false)
+            }
+        })
+        //const id = parseInt(e.target.value)
+        const indice = cliente.map(x => x.id).indexOf(e.target.value)
+        setCliente(cliente.concat(cliente.splice(indice, 1)))
+
+        console.log(elementos)
+        console.log(cliente)
+
+        console.log(e.target.value)
+     }
 
     useEffect(() => {
         setCliente(clienteDato)
-        setModificar(!modificar)
-      }, [onSubmit])
+      }, [])
    
    
 
@@ -81,7 +105,8 @@ function TaskForm({cliente}) {
                 <option value="Imprimiendo">Imprimiendo</option>
                 <option value="Listo">Listo</option>
                 </select>
-            {modificar ? <button className="btn btn-info" type="submit">Guardar</button> : <button className="btn btn-info" type="submit">modificar</button> 
+            {modificar ? <button className="btn btn-info" type="submit" value={id} onClick={modificarCliente}>modificar</button> :
+             <button className="btn btn-info" type="submit">Guardar</button>  
         }
         </form>
 

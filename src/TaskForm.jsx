@@ -32,28 +32,43 @@ function TaskForm({cliente}) {
         e.preventDefault()
         const nuevoCliente ={
             id: uuidv4(),
-            nombreCliente: nombre,
-            precio: precio,
+            nombreCliente: nombre.toUpperCase(),
+            precio: separator(precio),
             duracion: handleDuracion(precio),
             tiempoEstimado: handleTiempo(precio),
             fecha: fecha(),
             estado: estado
         }
-        setCliente([...cliente, nuevoCliente])
+        setCliente([nuevoCliente,...cliente])
         // console.log(nombre, precio)
         setPrecio(" ")  
         setNombre(" ")
         setEstado(e.target.value = "En Espera")
         
     }
+    const formatoHora = (duracion) =>{
+        let horas = Math.floor(duracion/60)
+        horas = (horas < 10) ? "0"+ horas : horas
+        let minutos = Math.floor(duracion % 60)
+        minutos = (minutos < 10) ? "0"+ minutos : minutos
+        let segundos = Math.floor((duracion*60)% 60)
+        segundos = (segundos < 10) ? "0"+ segundos : segundos
+        return horas +  ":" + minutos + ":" + segundos
+    }
     const handleDuracion = (precio) => {
       const duracion = precio/500*5.5
-      return duracion
+     return formatoHora(duracion)
     }
     const handleTiempo = (precio) => {
        const tiempo = ((precio/500)*5.5 )+ 20
-       return tiempo
+       return formatoHora(tiempo)
     }
+
+    function separator(numb) {
+        var str = numb.toString().split(".");
+        str[0] = str[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        return str.join(".");
+      }
     console.log(id)
     /* console.log(nuevoCliente)
     console.log(cliente) */
@@ -61,6 +76,7 @@ function TaskForm({cliente}) {
     e.preventDefault()
     setModificar(true)
     
+
     const elementos = cliente.filter(x => {
         if (x.id === e.target.value) {
             setPrecio(0)
@@ -82,7 +98,14 @@ function TaskForm({cliente}) {
 
         console.log(e.target.value)
      }
+           
+    const cancelarModificacion = () =>{
+            setPrecio(0)
+            setNombre("")
+            setEstado("En Epera")
+            setModificar(false)
 
+    }
     useEffect(() => {
         setCliente(clienteDato)
       }, [])
@@ -95,8 +118,8 @@ function TaskForm({cliente}) {
     return (<>
         <form className="form d-flex flex-row" action=""  onSubmit={onSubmit}>
 
-            <input type="text" value={nombre} onChange={handleSubmitNombre}/>
-            <input type="number" value={precio} onChange={handleSubmitPrecio} />
+            <input type="text" value={nombre} placeholder={"Cliente"} onChange={handleSubmitNombre}/>
+            <input type="number" value={precio} placeholder={"Precio"} onChange={handleSubmitPrecio} />
             
                 <select value={estado} name="estado" id="estado" onChange={handleSubmitEstado}>
                 <option value="En Espera">En Espera</option>
@@ -105,8 +128,9 @@ function TaskForm({cliente}) {
                 <option value="Imprimiendo">Imprimiendo</option>
                 <option value="Listo">Listo</option>
                 </select>
-            {modificar ? <button className="btn btn-info" type="submit" value={id} onClick={modificarCliente}>modificar</button> :
-             <button className="btn btn-info" type="submit">Guardar</button>  
+            {modificar ? <div> <button className="btn btn-info" type="submit" value={id} onClick={modificarCliente}>Modificar</button> 
+            <button className="btn btn-info" type="submit" value={id} onClick={cancelarModificacion}>Cancelar</button></div>:
+             <button className="btn btn-info" type="submit" >Guardar</button>  
         }
         </form>
 

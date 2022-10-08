@@ -52,7 +52,7 @@ function ContenidoTabla({ cliente }) {
         <>
             {cliente.map(({ nombreCliente, id, precio, duracion, tiempoEstimado, fecha, estado }) => (
                 <tr key={id}>
-                    <th scope="row">{id}</th>
+                   {/*  <th scope="row">{id}</th> */}
                     <td>{nombreCliente}</td>
                     <td>{precio}</td>
                     <td>{duracion}</td>
@@ -61,16 +61,16 @@ function ContenidoTabla({ cliente }) {
                     <td>{estado}</td>
 
                     <td>
-                        <button className="btn btn-success">imprimir</button>
+                        <button className="btn btn-success" disabled={modificar}>imprimir</button>
                         <button
                             className="btn btn-info text-white"
                             value={id}
-                            onClick={handleEdit}>
+                            onClick={handleEdit} disabled={modificar}>
                             modificar</button>
                         <button
                             className="btn btn-danger"
                             value={id}
-                            onClick={handleDelete}>
+                            onClick={handleDelete}  disabled={modificar}>
                             eliminar</button>
                     </td>
                 </tr>

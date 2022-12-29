@@ -10,7 +10,7 @@ function HuesoCrud({createCliente}) {
     return (
         <>
 
-            <div className="d-flex flex-column justify-content-center">
+            <div className="d-flex flex-column justify-content-center mt-5 ">
                 <div className="d-flex justify-content-center">
 
             <h1>Hueso Jeans</h1>
